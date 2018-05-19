@@ -56,7 +56,7 @@ object MusicXmlImporter {
         }
       }
     }
-    val pitches = notesAndTails.collect { case (Some(pitch), _) => pitch }.distinct.sorted.reverse
+    val pitches = notesAndTails.collect { case (Some(pitch), _) => pitch }.distinct.sorted
     val tails = notesAndTails.map(_._2).filterNot(isVoiceEmpty)
     pitches +: voicesToPitchSets(tails)
   }
