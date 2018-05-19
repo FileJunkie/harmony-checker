@@ -63,12 +63,12 @@ object MusicXmlImporter {
 
   def parseMeasure(measure: Node) = {
     val voices = (measure \\ "note").map(nodeToNote).groupBy(_._1).map { case (k, v) => (k, v.map(x => x._2)) }.values.filterNot(isVoiceEmpty)
-    voicesToPitchSets(voices.toSeq)
+    voicesToPitchSets(voices.toSeq).map(Chord.apply)
   }
 
   // only one part for now
   def loadMusicXml(filename: String) = {
     val measures = (customXMLLoader.loadFile(filename) \\ "part").head \\ "measure"
-    measures.map(parseMeasure)
+    measures.map(parseMeasure).map(Measure.apply)
   }
 }
