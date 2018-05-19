@@ -1,3 +1,3 @@
 package model
 
-case class Measure(chords: Seq[Chord])
+case class Measure(chords: Seq[PitchSet])

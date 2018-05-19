@@ -8,6 +8,18 @@ object Alteration {
     case 2  => Some(DoubleSharp)
     case _  => None
   }
+  def flatten(ao: Option[Alteration]): Option[Alteration] = ao match {
+    case Some(Flat)        => Some(DoubleFlat)
+    case None              => Some(Flat)
+    case Some(Sharp)       => None
+    case Some(DoubleSharp) => Some(Sharp)
+  }
+  def sharpen(ao: Option[Alteration]): Option[Alteration] = ao match {
+    case Some(DoubleFlat) => Some(Flat)
+    case Some(Flat)       => None
+    case None             => Some(Sharp)
+    case Some(Sharp)      => Some(DoubleSharp)
+  }
 }
 
 sealed trait Alteration { val pitchChange: Int }

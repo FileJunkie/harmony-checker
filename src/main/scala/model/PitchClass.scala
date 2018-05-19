@@ -10,6 +10,15 @@ object PitchClass {
     case "F" => F
     case "G" => G
   }
+  def fromScalePosition(scalePosition: Int) = scalePosition match {
+    case 1 => A
+    case 2 => B
+    case 3 => C
+    case 4 => D
+    case 5 => E
+    case 6 => F
+    case 7 => G
+  }
 }
 
 sealed trait PitchClass { val noteVal: Int; val scalePosition: Int }
